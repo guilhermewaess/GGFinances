@@ -17,7 +17,7 @@
                           name="login"
                           label="Login"
                           type="text"></v-text-field>
-            <password :value=""></password>
+            <password v-model="password"></password>
           </v-card-text>
 
           <v-card-actions>
@@ -55,6 +55,12 @@ export default {
   name: 'Login',
   components: {
     Password,
+  },
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
   },
 };
 </script>
