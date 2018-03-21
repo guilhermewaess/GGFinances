@@ -3,7 +3,7 @@ import Authentication from '@/components/views/Authentication';
 
 export default [
   {
-    path: 'authentication',
+    path: '/authentication',
     name: 'Authentication',
     component: Authentication,
     redirect: { name: 'Login' },

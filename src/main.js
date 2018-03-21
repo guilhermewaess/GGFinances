@@ -18,6 +18,7 @@ import {
 } from 'vuetify';
 
 import Vue from 'vue';
+import VeeValidate from 'vee-validate';
 import App from './App';
 import router from './router';
 import '../node_modules/vuetify/src/stylus/app.styl';
@@ -48,6 +49,8 @@ Vue.use(Vuetify, {
     success: '#4caf50',
   },
 });
+
+Vue.use(VeeValidate);
 
 Vue.config.productionTip = false;
 

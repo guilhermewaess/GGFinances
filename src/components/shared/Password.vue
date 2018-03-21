@@ -5,9 +5,9 @@
                 v-model="fieldValue"
                 min="6"
                 prepend-icon="lock"
-                :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                :append-icon="defineAppendIcon"
                 :append-icon-cb="changePasswordVisibility"
-                :type="showPassword ? 'text' : 'password'"
+                :type="defineFieldType"
                 @input="valueChange">
   </v-text-field>
 </template>
@@ -34,6 +34,14 @@ export default {
     },
     valueChange($event) {
       this.$emit('input', $event);
+    },
+  },
+  computed: {
+    defineAppendIcon() {
+      return this.showPassword ? 'visibility' : 'visibility_off';
+    },
+    defineFieldType() {
+      return this.showPassword ? 'text' : 'password';
     },
   },
 };

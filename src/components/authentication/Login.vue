@@ -13,10 +13,14 @@
         </v-toolbar>
         <v-form>
           <v-card-text>
-            <v-text-field prepend-icon="person"
-                          name="login"
-                          label="Login"
-                          type="text"></v-text-field>
+            <v-text-field v-model="email"
+                          prepend-icon="person"
+                          name="email"
+                          label="Email"
+                          type="text"
+                          v-validate="'required|email'"
+                          data-vv-name="email"
+                          :error-messages="errors.collect('email')"></v-text-field>
             <password v-model="password"></password>
           </v-card-text>
 
