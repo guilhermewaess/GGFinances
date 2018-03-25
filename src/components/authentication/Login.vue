@@ -13,6 +13,7 @@
         </v-toolbar>
         <v-form>
           <v-card-text>
+            <span>{{ isAuthenticated }}</span>
             <v-text-field v-model="email"
                           prepend-icon="person"
                           name="email"
@@ -41,7 +42,8 @@
             </v-btn>
             <v-btn block
                    dark
-                   color="red accent-4">
+                   color="red accent-4"
+                   @click="setIsAuthenticated(!isAuthenticated)">
               <v-icon left>fab fa-google</v-icon>
               Google
             </v-btn>
@@ -53,6 +55,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import Password from '@/components/shared/Password';
 
 export default {
@@ -65,6 +68,12 @@ export default {
       email: '',
       password: '',
     };
+  },
+  methods: {
+    ...mapActions('auth', ['setIsAuthenticated']),
+  },
+  computed: {
+    ...mapGetters('auth', ['isAuthenticated']),
   },
 };
 </script>
