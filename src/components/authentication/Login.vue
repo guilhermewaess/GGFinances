@@ -36,7 +36,8 @@
           </v-layout>
           <v-card-actions>
             <v-btn block
-                   color="primary">
+                   color="primary"
+                   @click="loginWithFacebook()">
               <v-icon left>fab fa-facebook-square</v-icon>
               Facebook
             </v-btn>
@@ -70,7 +71,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions('auth', ['setIsAuthenticated']),
+    ...mapActions('auth', ['loginWithFacebook']),
   },
   computed: {
     ...mapGetters('auth', ['isAuthenticated']),
