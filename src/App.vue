@@ -70,6 +70,8 @@
 import { auth, initializeApp } from 'firebase';
 import { mapActions } from 'vuex';
 
+import firebaseConfig from '@/firebase.config';
+
 export default {
   name: 'App',
   created() {
@@ -96,14 +98,7 @@ export default {
   methods: {
     ...mapActions('auth', ['autoSignIn', 'autoSignOut']),
     initFirebase() {
-      initializeApp({
-        apiKey: 'AIzaSyBBdeSEodZD4LfrPe2YP4KIEXcQvkyydIc',
-        authDomain: 'baterias-club-59b36.firebaseapp.com',
-        databaseURL: 'https://baterias-club-59b36.firebaseio.com',
-        projectId: 'baterias-club-59b36',
-        storageBucket: 'baterias-club-59b36.appspot.com',
-        messagingSenderId: '1014462209571',
-      });
+      initializeApp(firebaseConfig);
     },
     initFirebaseAuth() {
       auth().onAuthStateChanged((user) => {

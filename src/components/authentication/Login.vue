@@ -29,10 +29,14 @@
             <v-btn block
                    color="primary">Login</v-btn>
           </v-card-actions>
+          <v-layout row align-center justify-center>
+            <router-link :to="{name: 'Register'}">Oh! Don't have account? Register here!</router-link> 
+          </v-layout>
           <v-layout row
                     align-center
-                    justify-center>
-            <span class="text-xs-center social-divider">Social</span>
+                    justify-center
+                    class="mt-3">
+            <span class="text-xs-center social-divider">Or use your social account</span>
           </v-layout>
           <v-card-actions>
             <v-btn block
@@ -44,7 +48,7 @@
             <v-btn block
                    dark
                    color="red accent-4"
-                   @click="setIsAuthenticated(!isAuthenticated)">
+                   @click="loginWithGoogle()">
               <v-icon left>fab fa-google</v-icon>
               Google
             </v-btn>
@@ -71,7 +75,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions('auth', ['loginWithFacebook']),
+    ...mapActions('auth', ['loginWithFacebook', 'loginWithGoogle']),
   },
   computed: {
     ...mapGetters('auth', ['isAuthenticated']),

@@ -5,8 +5,7 @@ export default {
     state.isAuthenticated = payload;
   },
   [signIn](state, payload) {
-    state.user = payload.user;
-    state.token = payload.token;
+    state.user = payload;
     state.isAuthenticated = true;
   },
   [signOut](state) {

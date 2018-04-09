@@ -1,37 +1,37 @@
-import { signInWithFacebook } from '@/components/authentication/authentication.service';
+import {
+  signInWithFacebook,
+  signInWithGoogle,
+} from '@/components/authentication/authentication.service';
 import {
   setIsAuthenticated,
   signIn,
   signOut,
 } from '@/components/authentication/store/mutationTypes';
 
-function createSignInObject(firebaseResult) {
-  return {
-    user: firebaseResult.user,
-    token: firebaseResult.credential.accessToken,
-  };
-}
-
 export function setAuthentication({ commit }, isAuthenticated) {
   commit(setIsAuthenticated, isAuthenticated);
 }
 
-export async function loginWithFacebook({ commit }) {
+export async function loginWithFacebook() {
   try {
-    const result = await signInWithFacebook();
-    const signInObject = createSignInObject(result);
-
-    commit(signIn, signInObject);
+    return await signInWithFacebook();
   } catch (error) {
     throw new Error(error);
   }
 }
 
-export function autoSignIn({ commit }, firebaseResult) {
-  commit(signIn, createSignInObject(firebaseResult));
+export async function loginWithGoogle() {
+  try {
+    return await signInWithGoogle();
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export function autoSignIn({ commit }, user) {
+  commit(signIn, user);
 }
 
 export function autoSignOut({ commit }) {
   commit(signOut);
 }
-// export { loginWithGoogle, loginWithFacebook, setAuthentication, autoSignIn, autoSignOut };

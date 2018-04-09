@@ -4,4 +4,6 @@ export function signInWithFacebook() {
   return auth().signInWithPopup(new auth.FacebookAuthProvider());
 }
 
-export function setToken() {}
+export function signInWithGoogle() {
+  return auth().signInWithPopup(new auth.GoogleAuthProvider());
+}
