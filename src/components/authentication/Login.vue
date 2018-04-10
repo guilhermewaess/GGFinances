@@ -11,7 +11,7 @@
             Login
           </v-toolbar-title>
         </v-toolbar>
-        <v-form>
+        <v-form @submit.prevent="login()">
           <v-card-text>
             <span>{{ isAuthenticated }}</span>
             <v-text-field v-model="email"
@@ -22,15 +22,23 @@
                           v-validate="'required|email'"
                           data-vv-name="email"
                           :error-messages="errors.collect('email')"></v-text-field>
-            <password v-model="password"></password>
+            <password name="password"
+                      v-model="password"
+                      v-validate="'required|min:6'"
+                      dava-vv-value-path="passwordValue"
+                      :validationErrors="errors.collect('password')">
+            </password>
           </v-card-text>
 
           <v-card-actions>
-            <v-btn block
+            <v-btn type="submit"
+                   block
                    color="primary">Login</v-btn>
           </v-card-actions>
-          <v-layout row align-center justify-center>
-            <router-link :to="{name: 'Register'}">Oh! Don't have account? Register here!</router-link> 
+          <v-layout row
+                    align-center
+                    justify-center>
+            <router-link :to="{name: 'Register'}">Oh! Don't have account? Register here!</router-link>
           </v-layout>
           <v-layout row
                     align-center
@@ -76,6 +84,12 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['loginWithFacebook', 'loginWithGoogle']),
+    async login() {
+      const isValid = await this.$validator.validateAll();
+      if (isValid) {
+        // yeyy
+      }
+    },
   },
   computed: {
     ...mapGetters('auth', ['isAuthenticated']),

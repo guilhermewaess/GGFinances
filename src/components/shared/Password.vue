@@ -1,13 +1,10 @@
 <template>
   <v-text-field name="password"
-                label="Enter your password"
                 hint="At least 6 characters"
-                v-model="fieldValue"
-                v-validate="'required|email'"
-                data-vv-name="fieldValue"
-                data-vv-as="password"
-                :error-messages="errors.collect('fieldValue')"
+                v-model="passwordValue"
                 prepend-icon="lock"
+                :label="label"
+                :error-messages="validationErrors"
                 :append-icon="defineAppendIcon"
                 :append-icon-cb="changePasswordVisibility"
                 :type="defineFieldType"
@@ -24,11 +21,17 @@ export default {
   },
   props: {
     value: { required: true },
+    label: {
+      default: 'Enter your password',
+    },
+    validationErrors: {
+      required: false,
+    },
   },
   data() {
     return {
       showPassword: false,
-      fieldValue: this.value,
+      passwordValue: this.value,
     };
   },
   methods: {

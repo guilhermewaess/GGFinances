@@ -1,5 +1,6 @@
-import Login from '@/components/authentication/Login';
 import Authentication from '@/components/views/Authentication';
+import Login from '@/components/authentication/Login';
+import Register from '@/components/authentication/Register';
 
 export default [
   {
@@ -12,6 +13,11 @@ export default [
         path: 'login',
         name: 'Login',
         component: Login,
+      },
+      {
+        path: 'register',
+        name: 'Register',
+        component: Register,
       },
     ],
   },
