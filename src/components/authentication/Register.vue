@@ -11,7 +11,7 @@
             Register
           </v-toolbar-title>
         </v-toolbar>
-        <v-form @submit.prevent="register()">
+        <v-form @submit.prevent="createUser()">
           <v-container>
             <v-layout row
                       wrap>
@@ -102,6 +102,7 @@
 
 <script>
 import Password from '@/components/shared/Password';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Register',
@@ -111,18 +112,21 @@ export default {
   data() {
     return {
       user: {
-        firstName: '',
-        surname: '',
-        password: '',
-        confirmPassword: '',
+        firstName: 'guilherme',
+        surname: 'waess',
+        email: 'g@g.com',
+        confirmEmail: 'g@g.com',
+        password: '123456',
+        confirmPassword: '123456',
       },
     };
   },
   methods: {
-    async register() {
+    ...mapActions('auth', ['register']),
+    async createUser() {
       const isValid = await this.$validator.validateAll();
       if (isValid) {
-        // yey
+        this.register(this.user);
       }
     },
   },

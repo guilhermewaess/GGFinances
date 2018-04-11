@@ -1,6 +1,7 @@
 import {
   signInWithFacebook,
   signInWithGoogle,
+  signUp,
 } from '@/components/authentication/authentication.service';
 import {
   setIsAuthenticated,
@@ -25,6 +26,14 @@ export async function loginWithGoogle() {
     return await signInWithGoogle();
   } catch (error) {
     throw new Error(error);
+  }
+}
+
+export async function register(store, user) {
+  try {
+    await signUp(user);
+  } catch (error) {
+    console.log(error); // eslint-disable-line
   }
 }
 
