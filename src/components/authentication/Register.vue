@@ -18,10 +18,10 @@
               <v-flex xs12
                       sm6>
                 <v-text-field name="first-name"
-                              label="First name"
+                              label="Name"
                               prepend-icon="person"
                               type="text"
-                              v-model="user.firstName"
+                              v-model="user.name"
                               v-validate="'required|max:20'"
                               :error-messages="errors.collect('first-name')">
                 </v-text-field>
@@ -112,12 +112,12 @@ export default {
   data() {
     return {
       user: {
-        firstName: 'guilherme',
-        surname: 'waess',
-        email: 'g@g.com',
-        confirmEmail: 'g@g.com',
-        password: '123456',
-        confirmPassword: '123456',
+        name: '',
+        surname: '',
+        email: '',
+        confirmEmail: '',
+        password: '',
+        confirmPassword: '',
       },
     };
   },

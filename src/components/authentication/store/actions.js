@@ -30,6 +30,7 @@ export async function loginWithGoogle() {
 }
 
 export async function register(store, user) {
+  // Todo: update user on store
   try {
     await signUp(user);
   } catch (error) {

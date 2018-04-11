@@ -5,8 +5,8 @@ async function tryCreateUser({ email, password }) {
   return user;
 }
 
-async function tryUpdateUser(a, user) {
-  await user.updateProfile();
+async function tryUpdateUser({ name, surname }, user) {
+  await user.updateProfile({ displayName: `${name} ${surname}` });
 }
 
 export function signInWithFacebook() {
