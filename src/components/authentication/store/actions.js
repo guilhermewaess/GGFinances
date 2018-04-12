@@ -1,4 +1,7 @@
+import Vue from 'vue';
+
 import {
+  signInWithCredentials,
   signInWithFacebook,
   signInWithGoogle,
   signUp,
@@ -13,9 +16,23 @@ export function setAuthentication({ commit }, isAuthenticated) {
   commit(setIsAuthenticated, isAuthenticated);
 }
 
+export async function loginWithUserAndPassword(store, { email, password }) {
+  try {
+    await signInWithCredentials(email, password);
+  } catch (error) {
+    Vue.prototype.$snotify.error(error.message, 'Error!', {
+      timeout: 5000,
+      showProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      position: 'rightTop',
+    });
+  }
+}
+
 export async function loginWithFacebook() {
   try {
-    return await signInWithFacebook();
+    await signInWithFacebook();
   } catch (error) {
     throw new Error(error);
   }
@@ -23,7 +40,7 @@ export async function loginWithFacebook() {
 
 export async function loginWithGoogle() {
   try {
-    return await signInWithGoogle();
+    await signInWithGoogle();
   } catch (error) {
     throw new Error(error);
   }

@@ -14,7 +14,7 @@
         <v-form @submit.prevent="login()">
           <v-card-text>
             <span>{{ isAuthenticated }}</span>
-            <v-text-field v-model="email"
+            <v-text-field v-model="user.email"
                           prepend-icon="person"
                           name="email"
                           label="Email"
@@ -23,7 +23,7 @@
                           data-vv-name="email"
                           :error-messages="errors.collect('email')"></v-text-field>
             <password name="password"
-                      v-model="password"
+                      v-model="user.password"
                       v-validate="'required|min:6'"
                       dava-vv-value-path="passwordValue"
                       :validationErrors="errors.collect('password')">
@@ -78,16 +78,22 @@ export default {
   },
   data() {
     return {
-      email: '',
-      password: '',
+      user: {
+        email: '',
+        password: '',
+      },
     };
   },
   methods: {
-    ...mapActions('auth', ['loginWithFacebook', 'loginWithGoogle']),
+    ...mapActions('auth', [
+      'loginWithFacebook',
+      'loginWithGoogle',
+      'loginWithUserAndPassword',
+    ]),
     async login() {
       const isValid = await this.$validator.validateAll();
       if (isValid) {
-        // yeyy
+        this.loginWithUserAndPassword(this.user);
       }
     },
   },

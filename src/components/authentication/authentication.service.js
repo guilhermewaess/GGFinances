@@ -9,6 +9,10 @@ async function tryUpdateUser({ name, surname }, user) {
   await user.updateProfile({ displayName: `${name} ${surname}` });
 }
 
+export function signInWithCredentials(email, password) {
+  return auth().signInWithEmailAndPassword(email, password);
+}
+
 export function signInWithFacebook() {
   return auth().signInWithPopup(new auth.FacebookAuthProvider());
 }

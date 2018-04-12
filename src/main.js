@@ -19,6 +19,7 @@ import {
 
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
+import Snotify from 'vue-snotify';
 
 import App from './App';
 import router from './router';
@@ -53,8 +54,7 @@ Vue.use(Vuetify, {
 });
 
 Vue.use(VeeValidate);
-
-
+Vue.use(Snotify);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

@@ -63,6 +63,7 @@
               app>
       <span>&copy; 2017</span>
     </v-footer>
+    <vue-snotify></vue-snotify>
   </v-app>
 </template>
 
@@ -112,3 +113,8 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "~vue-snotify/styles/simple";
+
+</style>
