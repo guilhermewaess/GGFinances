@@ -1,9 +1,10 @@
-import Login from '@/components/authentication/Login';
 import Authentication from '@/components/views/Authentication';
+import Login from '@/components/authentication/Login';
+import Register from '@/components/authentication/Register';
 
 export default [
   {
-    path: 'authentication',
+    path: '/authentication',
     name: 'Authentication',
     component: Authentication,
     redirect: { name: 'Login' },
@@ -12,6 +13,11 @@ export default [
         path: 'login',
         name: 'Login',
         component: Login,
+      },
+      {
+        path: 'register',
+        name: 'Register',
+        component: Register,
       },
     ],
   },

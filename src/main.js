@@ -18,8 +18,11 @@ import {
 } from 'vuetify';
 
 import Vue from 'vue';
+import VeeValidate from 'vee-validate';
+
 import App from './App';
 import router from './router';
+import store from './store';
 import '../node_modules/vuetify/src/stylus/app.styl';
 
 Vue.use(Vuetify, {
@@ -49,12 +52,16 @@ Vue.use(Vuetify, {
   },
 });
 
+Vue.use(VeeValidate);
+
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>',
 });
