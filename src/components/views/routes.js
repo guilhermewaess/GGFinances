@@ -1,24 +1,4 @@
-import Authentication from '@/components/views/Authentication';
-import Login from '@/components/authentication/Login';
-import Register from '@/components/authentication/Register';
+import authenticationRoutes from '@/components/views/authentication.routes';
+import financesRoutes from '@/components/views/finances.routes';
 
-export default [
-  {
-    path: '/authentication',
-    name: 'Authentication',
-    component: Authentication,
-    redirect: { name: 'Login' },
-    children: [
-      {
-        path: 'login',
-        name: 'Login',
-        component: Login,
-      },
-      {
-        path: 'register',
-        name: 'Register',
-        component: Register,
-      },
-    ],
-  },
-];
+export default [...authenticationRoutes, ...financesRoutes];
