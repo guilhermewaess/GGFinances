@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import router from '@/router';
 
 import {
   signInWithCredentials,
@@ -12,6 +13,10 @@ import {
   signOut,
 } from '@/components/authentication/store/mutationTypes';
 
+function goToFinances() {
+  router.push({ name: 'Finances' });
+}
+
 export function setAuthentication({ commit }, isAuthenticated) {
   commit(setIsAuthenticated, isAuthenticated);
 }
@@ -19,6 +24,7 @@ export function setAuthentication({ commit }, isAuthenticated) {
 export async function loginWithUserAndPassword(store, { email, password }) {
   try {
     await signInWithCredentials(email, password);
+    goToFinances();
   } catch (error) {
     Vue.prototype.$snotify.error(error.message, 'Error!');
   }
@@ -27,6 +33,7 @@ export async function loginWithUserAndPassword(store, { email, password }) {
 export async function loginWithFacebook() {
   try {
     await signInWithFacebook();
+    goToFinances();
   } catch (error) {
     Vue.prototype.$snotify.error(error.message, 'Error!');
   }
@@ -35,6 +42,7 @@ export async function loginWithFacebook() {
 export async function loginWithGoogle() {
   try {
     await signInWithGoogle();
+    goToFinances();
   } catch (error) {
     Vue.prototype.$snotify.error(error.message, 'Error!');
   }
@@ -44,6 +52,7 @@ export async function register({ dispatch }, newUser) {
   try {
     const user = await signUp(newUser);
     dispatch('autoSignIn', user);
+    goToFinances();
   } catch (error) {
     Vue.prototype.$snotify.error(error.message, 'Error!');
   }
