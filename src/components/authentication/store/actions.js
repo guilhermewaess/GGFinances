@@ -20,13 +20,7 @@ export async function loginWithUserAndPassword(store, { email, password }) {
   try {
     await signInWithCredentials(email, password);
   } catch (error) {
-    Vue.prototype.$snotify.error(error.message, 'Error!', {
-      timeout: 5000,
-      showProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      position: 'rightTop',
-    });
+    Vue.prototype.$snotify.error(error.message, 'Error!');
   }
 }
 
@@ -34,7 +28,7 @@ export async function loginWithFacebook() {
   try {
     await signInWithFacebook();
   } catch (error) {
-    throw new Error(error);
+    Vue.prototype.$snotify.error(error.message, 'Error!');
   }
 }
 
@@ -42,16 +36,16 @@ export async function loginWithGoogle() {
   try {
     await signInWithGoogle();
   } catch (error) {
-    throw new Error(error);
+    Vue.prototype.$snotify.error(error.message, 'Error!');
   }
 }
 
-export async function register(store, user) {
-  // Todo: update user on store
+export async function register({ dispatch }, newUser) {
   try {
-    await signUp(user);
+    const user = await signUp(newUser);
+    dispatch('autoSignIn', user);
   } catch (error) {
-    console.log(error); // eslint-disable-line
+    Vue.prototype.$snotify.error(error.message, 'Error!');
   }
 }
 

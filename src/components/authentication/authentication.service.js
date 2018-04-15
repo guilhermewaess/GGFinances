@@ -1,12 +1,12 @@
+import Vue from 'vue';
 import { auth } from 'firebase';
 
-async function tryCreateUser({ email, password }) {
-  const user = await auth().createUserWithEmailAndPassword(email, password);
-  return user;
+function tryCreateUser({ email, password }) {
+  return auth().createUserWithEmailAndPassword(email, password);
 }
 
-async function tryUpdateUser({ name, surname }, user) {
-  await user.updateProfile({ displayName: `${name} ${surname}` });
+function tryUpdateUser({ name, surname }, user) {
+  return user.updateProfile({ displayName: `${name} ${surname}` });
 }
 
 export function signInWithCredentials(email, password) {
@@ -22,16 +22,15 @@ export function signInWithGoogle() {
 }
 
 export async function signUp(newUser) {
-  let user;
+  let user = null;
   try {
     user = await tryCreateUser(newUser);
     await tryUpdateUser(newUser, user);
-
-    return user;
   } catch (error) {
     if (user) {
       await user.delete();
     }
-    throw error;
+    Vue.prototype.$snotify.error(error.message, 'Error!');
   }
+  return user;
 }
