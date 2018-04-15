@@ -10,7 +10,7 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      redirect: { name: 'Authentication' },
+      redirect: { name: 'Finances' },
     },
     ...viewRoutes,
     {
