@@ -1,4 +1,7 @@
+import Vue from 'vue';
+
 import {
+  signInWithCredentials,
   signInWithFacebook,
   signInWithGoogle,
   signUp,
@@ -13,28 +16,36 @@ export function setAuthentication({ commit }, isAuthenticated) {
   commit(setIsAuthenticated, isAuthenticated);
 }
 
+export async function loginWithUserAndPassword(store, { email, password }) {
+  try {
+    await signInWithCredentials(email, password);
+  } catch (error) {
+    Vue.prototype.$snotify.error(error.message, 'Error!');
+  }
+}
+
 export async function loginWithFacebook() {
   try {
-    return await signInWithFacebook();
+    await signInWithFacebook();
   } catch (error) {
-    throw new Error(error);
+    Vue.prototype.$snotify.error(error.message, 'Error!');
   }
 }
 
 export async function loginWithGoogle() {
   try {
-    return await signInWithGoogle();
+    await signInWithGoogle();
   } catch (error) {
-    throw new Error(error);
+    Vue.prototype.$snotify.error(error.message, 'Error!');
   }
 }
 
-export async function register(store, user) {
-  // Todo: update user on store
+export async function register({ dispatch }, newUser) {
   try {
-    await signUp(user);
+    const user = await signUp(newUser);
+    dispatch('autoSignIn', user);
   } catch (error) {
-    console.log(error); // eslint-disable-line
+    Vue.prototype.$snotify.error(error.message, 'Error!');
   }
 }
 
