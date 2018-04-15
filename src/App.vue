@@ -68,17 +68,8 @@
 </template>
 
 <script>
-import { auth, initializeApp } from 'firebase';
-import { mapActions } from 'vuex';
-
-import firebaseConfig from '@/firebase.config';
-
 export default {
   name: 'App',
-  created() {
-    this.initFirebase();
-    this.initFirebaseAuth();
-  },
   data() {
     return {
       clipped: false,
@@ -96,25 +87,9 @@ export default {
       title: 'Vuetify.js',
     };
   },
-  methods: {
-    ...mapActions('auth', ['autoSignIn', 'autoSignOut']),
-    initFirebase() {
-      initializeApp(firebaseConfig);
-    },
-    initFirebaseAuth() {
-      auth().onAuthStateChanged((user) => {
-        if (user) {
-          this.autoSignIn(user);
-        } else {
-          this.autoSignOut();
-        }
-      });
-    },
-  },
 };
 </script>
 
 <style lang="scss">
-@import "~vue-snotify/styles/simple";
-
+@import '~vue-snotify/styles/simple';
 </style>

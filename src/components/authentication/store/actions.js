@@ -52,6 +52,7 @@ export async function register({ dispatch }, newUser) {
   try {
     const user = await signUp(newUser);
     dispatch('autoSignIn', user);
+    goToFinances();
   } catch (error) {
     Vue.prototype.$snotify.error(error.message, 'Error!');
   }
@@ -59,7 +60,6 @@ export async function register({ dispatch }, newUser) {
 
 export function autoSignIn({ commit }, user) {
   commit(signIn, user);
-  goToFinances();
 }
 
 export function autoSignOut({ commit }) {
