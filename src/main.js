@@ -19,6 +19,7 @@ initializeApp(firebaseConfig);
 auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch('auth/autoSignIn', user);
+    user.getToken().then(result => console.log(result)); // eslint-disable-line
   } else {
     store.dispatch('auth/autoSignOut');
   }
