@@ -1,28 +1,31 @@
 <template>
-  <v-container fluid>
-    <v-layout xs12>
-      <v-flex>
-        <v-card>
-          <v-toolbar flat
-                     dark
-                     color="secondary"
-                     class="elevation-0">
-            <v-toolbar-title>April</v-toolbar-title>
-          </v-toolbar>
-          <v-container fluid
-                       grid-list-md>
-            <v-layout v-bind="layoutDisplay"
-                      wrap
-                      justify-space-around>
+  <v-layout row wrap>
+    <v-flex xs12>
+      <v-card height="94%">
+        <v-toolbar flat
+                   dark
+                   color="secondary"
+                   class="elevation-0">
+          <v-toolbar-title>April</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-title>Freedom: 100.00</v-toolbar-title>
+        </v-toolbar>
+        <v-container fluid
+                     grid-list-md
+                     class="pa-0">
+          <v-layout v-bind="layoutDisplay"
+                    wrap>
+            <v-flex xs12
+                    sm6>
               <budget :budget="budget"
                       v-for="budget in budgets"
                       :key="budget.name"></budget>
-            </v-layout>
-          </v-container>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -58,6 +61,18 @@ export default {
                   name: 'Aluguel',
                   value: 500,
                 },
+                {
+                  name: 'Aluguel2',
+                  value: 500,
+                },
+                {
+                  name: 'Aluguel3',
+                  value: 500,
+                },
+                {
+                  name: 'Aluguel4',
+                  value: 500,
+                },
               ],
             },
           ],
@@ -76,14 +91,18 @@ export default {
                 },
               ],
             },
-          ],
-        },
-        {
-          name: 'Freedom',
-          type: 'remaining',
-          expenses: [
             {
-              name: 'Contas AP',
+              name: 'Contas AP2',
+              total: 1000,
+              details: [
+                {
+                  name: 'Aluguel',
+                  value: 500,
+                },
+              ],
+            },
+            {
+              name: 'Contas AP3',
               total: 1000,
               details: [
                 {

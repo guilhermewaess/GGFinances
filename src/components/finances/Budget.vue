@@ -4,10 +4,15 @@
       <v-card-text class="text-xs-center">
         <h2 :class="defineTitleClass()">{{ budget.name }}</h2>
       </v-card-text>
-      <v-container>
-        <expense v-for="expense in budget.expenses"
-                 :key="expense.name"
-                 :expense="expense"></expense>
+      <v-container class="pa-0">
+        <v-layout row
+                  wrap>
+          <v-flex xs12>
+            <expense v-for="expense in budget.expenses"
+                     :key="expense.name"
+                     :expense="expense"></expense>
+          </v-flex>
+        </v-layout>
       </v-container>
     </v-card>
   </v-flex>
@@ -43,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.budget-card{
+.budget-card {
   height: 100% !important;
 }
 </style>
