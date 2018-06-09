@@ -1,6 +1,6 @@
 <template>
   <v-flex>
-    <v-card class="budget-card">
+    <v-card>
       <finance-header>
         <div slot="left-text">Incomes</div>
         <div slot="right-text">{{incomes.total}}</div>

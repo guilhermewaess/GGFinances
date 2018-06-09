@@ -2,14 +2,13 @@
   <v-layout row
             wrap>
     <v-flex xs12>
-      <v-card height="94%">
+      <v-card>
         <v-toolbar flat
                    dark
-                   color="secondary"
                    class="elevation-0">
           <v-toolbar-title>April</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-toolbar-title>Freedom: 100.00</v-toolbar-title>
+          <v-toolbar-title>Freedom: {{balance.planned}}</v-toolbar-title>
         </v-toolbar>
         <v-container fluid
                      grid-list-md
@@ -20,7 +19,7 @@
                     sm6>
               <incomes :incomes="incomes"></incomes>
               <expenses :expenses="expenses"></expenses>
-              <!-- <balance></balance> -->
+              <balance :balance="balance"></balance>
               <!-- <budget :budget="budget"
                       v-for="budget in budgets"
                       :key="budget.name"></budget> -->
