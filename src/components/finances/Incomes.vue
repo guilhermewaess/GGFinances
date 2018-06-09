@@ -1,15 +1,10 @@
 <template>
   <v-flex>
     <v-card class="budget-card">
-      <v-toolbar flat
-                 dark
-                 card
-                 height="20px"
-                 class="elevation-0">
-        <v-toolbar-title class="toolbar__title">Incomes</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-title>100.00</v-toolbar-title>
-      </v-toolbar>
+      <finance-header>
+        <div slot="left-text">Incomes</div>
+        <div slot="right-text">{{incomes.total}}</div>
+      </finance-header>
       <v-container class="pa-2">
         <simple-income-outcome v-for="(income, index) in incomes.detais"
                                :key="index"
@@ -22,11 +17,13 @@
 
 
 <script>
+import FinanceHeader from './FinanceHeader';
 import SimpleIncomeOutcome from './SimpleIncomeOutcome';
 
 export default {
   name: 'Incomes',
   components: {
+    FinanceHeader,
     SimpleIncomeOutcome,
   },
   props: {
@@ -39,7 +36,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.toolbar__title {
-  font-size: 14px;
-}
 </style>

@@ -19,8 +19,8 @@
             <v-flex xs12
                     sm6>
               <incomes :incomes="incomes"></incomes>
-              <!-- <expenses></expenses>
-              <balance></balance> -->
+              <expenses :expenses="expenses"></expenses>
+              <!-- <balance></balance> -->
               <!-- <budget :budget="budget"
                       v-for="budget in budgets"
                       :key="budget.name"></budget> -->
@@ -60,6 +60,43 @@ export default {
               {
                 name: 'Aluguel',
                 value: 500,
+                isPaid: true,
+              },
+              {
+                name: 'Aluguel',
+                value: 500,
+                isPaid: true,
+              },
+              {
+                name: 'Aluguel',
+                value: 500,
+                isPaid: true,
+              },
+              {
+                name: 'Aluguel',
+                value: 500,
+                isPaid: true,
+              },
+            ],
+          },
+          {
+            name: 'Contas AP2',
+            total: 1000,
+            details: [
+              {
+                name: 'Aluguel2',
+                value: 5200,
+                isPaid: true,
+              },
+            ],
+          },
+          {
+            name: 'Contas AP3',
+            total: 1000,
+            details: [
+              {
+                name: 'Aluguel3',
+                value: 5200,
                 isPaid: true,
               },
             ],
