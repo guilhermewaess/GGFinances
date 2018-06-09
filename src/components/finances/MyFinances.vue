@@ -1,5 +1,6 @@
 <template>
-  <v-layout row wrap>
+  <v-layout row
+            wrap>
     <v-flex xs12>
       <v-card height="94%">
         <v-toolbar flat
@@ -17,9 +18,12 @@
                     wrap>
             <v-flex xs12
                     sm6>
-              <budget :budget="budget"
+              <incomes :incomes="incomes"></incomes>
+              <!-- <expenses></expenses>
+              <balance></balance> -->
+              <!-- <budget :budget="budget"
                       v-for="budget in budgets"
-                      :key="budget.name"></budget>
+                      :key="budget.name"></budget> -->
             </v-flex>
           </v-layout>
         </v-container>
@@ -29,91 +33,43 @@
 </template>
 
 <script>
-import Budget from './Budget';
+import Balance from './Balance';
+import Incomes from './Incomes';
+import Expenses from './Expenses';
 
 export default {
   name: 'MyFinances',
   components: {
-    Budget,
+    Balance,
+    Expenses,
+    Incomes,
   },
   data() {
     return {
-      budgets: [
-        {
-          name: 'Credit',
-          type: 'credit',
-          expenses: [
-            {
-              name: 'Contas AP',
-              total: 1000,
-              details: [
-                {
-                  name: 'Aluguel',
-                  value: 500,
-                },
-              ],
-            },
-            {
-              name: 'Contas AP2',
-              total: 1000,
-              details: [
-                {
-                  name: 'Aluguel',
-                  value: 500,
-                },
-                {
-                  name: 'Aluguel2',
-                  value: 500,
-                },
-                {
-                  name: 'Aluguel3',
-                  value: 500,
-                },
-                {
-                  name: 'Aluguel4',
-                  value: 500,
-                },
-              ],
-            },
-          ],
-        },
-        {
-          name: 'Debit',
-          type: 'debit',
-          expenses: [
-            {
-              name: 'Contas AP',
-              total: 1000,
-              details: [
-                {
-                  name: 'Aluguel',
-                  value: 500,
-                },
-              ],
-            },
-            {
-              name: 'Contas AP2',
-              total: 1000,
-              details: [
-                {
-                  name: 'Aluguel',
-                  value: 500,
-                },
-              ],
-            },
-            {
-              name: 'Contas AP3',
-              total: 1000,
-              details: [
-                {
-                  name: 'Aluguel',
-                  value: 500,
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      incomes: {
+        total: 1000,
+        detais: [{ name: 'Salary', value: 7000.0 }, { name: 'Salary', value: 7000.0 }],
+      },
+      expenses: {
+        total: 50000,
+        expensesList: [
+          {
+            name: 'Contas AP',
+            total: 1000,
+            details: [
+              {
+                name: 'Aluguel',
+                value: 500,
+                isPaid: true,
+              },
+            ],
+          },
+        ],
+      },
+      balance: {
+        real: 2000,
+        planned: 1000,
+      },
     };
   },
   computed: {
